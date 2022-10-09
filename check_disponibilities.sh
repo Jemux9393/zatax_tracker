@@ -120,6 +120,7 @@ function  kamerastore ()  {
 
 }
 
+# OK
 function  digit_photo ()  {
 
     for url in $(< list_of_urls)
@@ -138,6 +139,23 @@ function  digit_photo ()  {
 
 }
 
+function  morifilmlab ()  {
+
+    for url in $(< list_of_urls)
+        do
+            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
+            website=$()
+            curl -s $url > $filename
+            check_soldout=$(grep 'data-label="Epuisé<br>"'  $filename )
+            if [[ -z $check_soldout ]]
+                then
+                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+                else
+                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            fi      
+    done
+
+}
 
 function  generate_price_check ()  {
 
@@ -146,7 +164,8 @@ function  generate_price_check ()  {
 # nationphoto
 # fotoimpex
 # kamerastore
-digit_photo
+# digit_photo
+morifilmlab
 
 }
 
