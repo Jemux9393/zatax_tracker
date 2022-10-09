@@ -21,42 +21,36 @@ fi
 # OK
 function  ateliers_marinette ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
-            website=$()
-            curl -s $url > $filename
-            grep -q "disabled>" $filename
-            if [[ $? != 0 ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
+    website=$()
+    curl -s $url > $filename
+    grep -q "disabled>" $filename
+    if [[ $? != 0 ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi      
 
 }
 
 # OK
 function  retrocamera ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
-            website=$()
-            curl -s $url > $filename
-            grep -q "Ce produit est épuisé" $filename
-            if [[ $? != 0 ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
+    website=$()
+    curl -s $url > $filename
+    grep -q "Ce produit est épuisé" $filename
+    if [[ $? != 0 ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi      
 
 }
 
-# Nationphoto marche pas car il y a un script en frontal
+# # NOK // marche pas car il y a un script en frontal
 function  nationphoto ()  {
 
     for url in $(< list_of_urls)
@@ -78,132 +72,122 @@ function  nationphoto ()  {
 # OK
 function  fotoimpex ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $5 }')
-            website=$()
-            curl -s $url > $filename
-            grep -q "alt=\"Out of stock\"" $filename
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $5 }')
+    website=$()
+    curl -s $url > $filename
+    grep -q "alt=\"Out of stock\"" $filename
+    if [[ $? != 0 ]]
+        then
+            grep -q "alt=\"Currently sold out\"" $filename
             if [[ $? != 0 ]]
-                then
-                    grep -q "alt=\"Currently sold out\"" $filename
-                    if [[ $? != 0 ]]
-                    then
-                        echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                    else
-                        echo -e $filename "est ${RED}\"Currently sold out\"${NC}" >> recap.txt
-                    fi
-                else
-                    reappro_date=$(grep "class=\"os_list_shipt7\">Expected" $filename | sed 's|<span class="os_list_shipt7">||g' | awk -F"<" '{sub(/^[ \t]+/, ""); print $1}')
-                    echo -e $filename "est ${RED}\"Out of stock : ${reappro_date:="No expected date for back approx."} \"${NC}" >> recap.txt
-            fi      
-    done
+            then
+                echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            else
+                echo -e $filename "est ${RED}\"Currently sold out\"${NC}" >> recap.txt
+            fi
+        else
+            reappro_date=$(grep "class=\"os_list_shipt7\">Expected" $filename | sed 's|<span class="os_list_shipt7">||g' | awk -F"<" '{sub(/^[ \t]+/, ""); print $1}')
+            echo -e $filename "est ${RED}\"Out of stock : ${reappro_date:="No expected date for back approx."} \"${NC}" >> recap.txt
+    fi      
 
 }
 
 # OK
 function  kamerastore ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $5 }')
-            website=$()
-            curl -s $url > $filename
-            check_soldout=$(grep -A1 "disabled" $filename | grep -i sold )
-            if [[ -z $check_soldout ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $5 }')
+    website=$()
+    curl -s $url > $filename
+    check_soldout=$(grep -A1 "disabled" $filename | grep -i sold )
+    if [[ -z $check_soldout ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi      
 
 }
 
 # OK
 function  digit_photo ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $4 }')
-            website=$()
-            curl -s $url > $filename
-            check_soldout=$(grep "id='title'>En réappro"  $filename )
-            if [[ -z $check_soldout ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $4 }')
+    website=$()
+    curl -s $url > $filename
+    check_soldout=$(grep "id='title'>En réappro"  $filename )
+    if [[ -z $check_soldout ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi      
 
 }
 
+# OK
 function  morifilmlab ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
-            website=$()
-            curl -s $url > $filename
-            check_soldout=$(grep 'data-label="Epuisé<br>"'  $filename )
-            if [[ -z $check_soldout ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
+    website=$()
+    curl -s $url > $filename
+    check_soldout=$(grep 'data-label="Epuisé<br>"'  $filename )
+    if [[ -z $check_soldout ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi      
 
 }
 
+# OK
 function  buymorefilm ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
-            website=$()
-            curl -s $url > $filename
-            check_soldout=$(grep -c "Sold Out"  $filename )
-            if [[ check_soldout -eq 2 ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
+    website=$()
+    curl -s $url > $filename
+    check_soldout=$(grep -c "Sold Out"  $filename )
+    if [[ check_soldout -eq 2 ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi
 
 }
 
+# OK
 function  filmphotographystore ()  {
 
-    for url in $(< list_of_urls)
-        do
-            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
-            website=$()
-            curl -s $url > $filename
-            check_soldout=$(grep  "Sold Out"  $filename )
-            if [[ -z $check_soldout ]]
-                then
-                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                else
-                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            fi      
-    done
+    filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
+    website=$()
+    curl -s $url > $filename
+    check_soldout=$(grep  "Sold Out"  $filename )
+    if [[ -z $check_soldout ]]
+        then
+            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+        else
+            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+    fi
 
 }
 
 function  generate_price_check ()  {
 
-# ateliers_marinette
-# retrocamera
-# nationphoto
-# fotoimpex
-# kamerastore
-# digit_photo
-# morifilmlab
-# buymorefilm
-filmphotographystore
+    for url in $(< list_of_urls)
+        do
+            if [[ $url == *"ateliers-marinette"* ]]; then ateliers_marinette; fi
+            if [[ $url == *"retrocamera"* ]]; then retrocamera; fi
+            if [[ $url == *"fotoimpex"* ]]; then  fotoimpex; fi            
+            if [[ $url == *"kamerastore"* ]]; then  kamerastore; fi
+            if [[ $url == *"nationphoto"* ]]; then  nationphoto; fi                        
+            if [[ $url == *"digit-photo"* ]]; then digit_photo; fi                        
+            if [[ $url == *"morifilmlab"* ]]; then morifilmlab; fi                        
+            if [[ $url == *"filmphotographystore"* ]]; then filmphotographystore; fi                        
+            if [[ $url == *"buymorefilm"* ]]; then buymorefilm; fi                        
+    done
+
+
 
 }
 
