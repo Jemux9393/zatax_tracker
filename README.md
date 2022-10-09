@@ -25,3 +25,15 @@ Script pour vérifier la disponibilité de certains produits sur pleins de sites
 * digit_photo
 
 **Example : https://www.digit-photo.com/KODAK-Gold-120-200-Asa-x5-rKODAK520004565.html**
+
+* morifilmlab
+
+**Example : https://fr.morifilmlab.com/collections/35mm-film/products/kodak-portra-160-35mm-film**
+
+* filmphotographystore
+
+**Example : https://filmphotographystore.com/collections/35mm-cameras/products/35mm-film-camera-canon-ae-1-program-slr-vintage**
+
+* buymorefilm
+
+**Example : https://buymorefilm.com/collections/35mm-new-black-and-white/products/adox-chs-100-ii-135-36-new**
