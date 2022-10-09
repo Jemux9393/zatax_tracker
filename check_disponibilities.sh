@@ -157,6 +157,24 @@ function  morifilmlab ()  {
 
 }
 
+function  buymorefilm ()  {
+
+    for url in $(< list_of_urls)
+        do
+            filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
+            website=$()
+            curl -s $url > $filename
+            check_soldout=$(grep -c "Sold Out"  $filename )
+            if [[ check_soldout -eq 2 ]]
+                then
+                    echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+                else
+                    echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            fi      
+    done
+
+}
+
 function  generate_price_check ()  {
 
 # ateliers_marinette
@@ -165,7 +183,8 @@ function  generate_price_check ()  {
 # fotoimpex
 # kamerastore
 # digit_photo
-morifilmlab
+# morifilmlab
+buymorefilm
 
 }
 
