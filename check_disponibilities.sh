@@ -8,6 +8,7 @@ last_checkup="NO_DATA"
 last_checkup=$(stat -c '%x' last_checkup.toto  | awk -F"." ' { print $1 }')
 echo "Derniere vérification des dispos : " $last_checkup
 generated_files_location="curled_files/"
+mkdir $generated_files_location
 
 if test `find last_checkup.toto -mmin +30 ` 2>/dev/null || [[ ! -f last_checkup.toto ]]
     then
@@ -22,14 +23,16 @@ fi
 function  ateliers_marinette ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
-    website=$()
-    curl -s $url > $filename
-    grep -q "disabled>" $filename
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}' )
+    curl -s $url > $generated_files_location$filename
+    grep -q "disabled>" $generated_files_location$filename
     if [[ $? != 0 ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi      
 
 }
@@ -38,14 +41,16 @@ function  ateliers_marinette ()  {
 function  retrocamera ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
-    website=$()
-    curl -s $url > $filename
-    grep -q "Ce produit est épuisé" $filename
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    grep -q "Ce produit est épuisé" $generated_files_location$filename
     if [[ $? != 0 ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi      
 
 }
@@ -57,13 +62,15 @@ function  nationphoto ()  {
         do
             filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $6 }')
             website=$()
-            curl -s $url > $filename
-            grep -q "disabled>" $filename
+            curl -s $url > $generated_files_location$filename
+            grep -q "disabled>" $generated_files_location$filename
             if [[ $? != 0 ]]
                 then
                     echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+                    echo $website","$filename",disponible" >> recap.csv
                 else
                     echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+                    echo $website","$filename",indisponible" >> recap.csv
             fi      
     done
 
@@ -73,21 +80,24 @@ function  nationphoto ()  {
 function  fotoimpex ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $5 }')
-    website=$()
-    curl -s $url > $filename
-    grep -q "alt=\"Out of stock\"" $filename
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    grep -q "alt=\"Out of stock\"" $generated_files_location$filename
     if [[ $? != 0 ]]
         then
-            grep -q "alt=\"Currently sold out\"" $filename
+            grep -q "alt=\"Currently sold out\"" $generated_files_location$filename
             if [[ $? != 0 ]]
             then
                 echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+                echo $website","$filename",disponible" >> recap.csv
             else
                 echo -e $filename "est ${RED}\"Currently sold out\"${NC}" >> recap.txt
+                echo $website","$filename",indisponible" >> recap.csv
             fi
         else
-            reappro_date=$(grep "class=\"os_list_shipt7\">Expected" $filename | sed 's|<span class="os_list_shipt7">||g' | awk -F"<" '{sub(/^[ \t]+/, ""); print $1}')
+            reappro_date=$(grep "class=\"os_list_shipt7\">Expected" $generated_files_location$filename | sed 's|<span class="os_list_shipt7">||g' | awk -F"<" '{sub(/^[ \t]+/, ""); print $1}')
             echo -e $filename "est ${RED}\"Out of stock : ${reappro_date:="No expected date for back approx."} \"${NC}" >> recap.txt
+            echo $website","$filename",indisponible,"$reappro_date >> recap.csv
     fi      
 
 }
@@ -96,14 +106,16 @@ function  fotoimpex ()  {
 function  kamerastore ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $5 }')
-    website=$()
-    curl -s $url > $filename
-    check_soldout=$(grep -A1 "disabled" $filename | grep -i sold )
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    check_soldout=$(grep -A1 "disabled" $generated_files_location$filename | grep -i sold )
     if [[ -z $check_soldout ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi      
 
 }
@@ -112,14 +124,16 @@ function  kamerastore ()  {
 function  digit_photo ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $4 }')
-    website=$()
-    curl -s $url > $filename
-    check_soldout=$(grep "id='title'>En réappro"  $filename )
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    check_soldout=$(grep "id='title'>En réappro"  $generated_files_location$filename )
     if [[ -z $check_soldout ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi      
 
 }
@@ -128,14 +142,16 @@ function  digit_photo ()  {
 function  morifilmlab ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
-    website=$()
-    curl -s $url > $filename
-    check_soldout=$(grep 'data-label="Epuisé<br>"'  $filename )
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    check_soldout=$(grep 'data-label="Epuisé<br>"'  $generated_files_location$filename )
     if [[ -z $check_soldout ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi      
 
 }
@@ -144,14 +160,16 @@ function  morifilmlab ()  {
 function  buymorefilm ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
-    website=$()
-    curl -s $url > $filename
-    check_soldout=$(grep -c "Sold Out"  $filename )
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    check_soldout=$(grep -c "Sold Out"  $generated_files_location$filename )
     if [[ check_soldout -eq 2 ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi
 
 }
@@ -160,14 +178,16 @@ function  buymorefilm ()  {
 function  filmphotographystore ()  {
 
     filename=$(echo $url | awk -F'/' '{ gsub(".html","") } { print $7 }')
-    website=$()
-    curl -s $url > $filename
-    check_soldout=$(grep  "Sold Out"  $filename )
+    website=$(echo $url | awk -F"/" '{ print $1"/"$2"/"$3}')
+    curl -s $url > $generated_files_location$filename
+    check_soldout=$(grep  "Sold Out"  $generated_files_location$filename )
     if [[ -z $check_soldout ]]
         then
             echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
+            echo $website","$filename",disponible" >> recap.csv
         else
             echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
+            echo $website","$filename",indisponible" >> recap.csv
     fi
 
 }
