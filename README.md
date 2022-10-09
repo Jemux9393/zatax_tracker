@@ -2,6 +2,18 @@
 
 Script pour vérifier la disponibilité de certains produits sur pleins de sites trop coools
 
+# Utilisation du script et pré-requis
+
+Execution du script
+bash 
+```
+bash check_disponibilities.sh
+```
+
+Il est impératif d'avoir le fichier **list_of_urls** au même endroit que le script.
+
+---
+
 # List des URLs prise en compte pour le moment
 * ateliers_marinette
 
