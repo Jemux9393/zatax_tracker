@@ -4,10 +4,6 @@
 
   - include_vars: result.yaml
 
-  # - name: "debug"
-  #   debug:
-  #     msg: "{{ website.ateliersmarinette }}"
-
   - name: "Génération du HTML"
     template:
       src: template.j2
