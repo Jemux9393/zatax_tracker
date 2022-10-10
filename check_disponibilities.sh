@@ -207,8 +207,6 @@ function  generate_price_check ()  {
             if [[ $url == *"buymorefilm"* ]]; then buymorefilm; fi                        
     done
 
-
-
 }
 
 
@@ -218,18 +216,6 @@ cat recap.txt
 
 }
 
-
-
-## MAIN PROGRAM
-
-# if [ $run_state = "true" ]
-#     then
-#         generate_price_check
-#         display_price_check
-#         touch last_checkup.toto
-#     else
-#         display_price_check
-# fi
 
 
 generate_price_check
