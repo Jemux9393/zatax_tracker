@@ -26,16 +26,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: SSH remote run
-      # You may pin to the exact commit or the version.
-      # uses: volodymyr-borodin/ssh-remove-run@b77eb2bab4e69e16f71ca98a94c74cdb5e712d86
-      uses: volodymyr-borodin/ssh-remove-run@v1
-      with:
-        # User
-        user: ralph
-        # Remove host
-        host: 51.38.237.223
-        # SSH private key
-        private-key-path: "/home/ralph/.ssh/id_rsa"
-        # Script to run
-        run: /home/ralph/test.sh
+- name: SSH Remote Commands
+  # You may pin to the exact commit or the version.
+  # uses: appleboy/ssh-action@f9010ff7f1bbd7db1a0b4bab661437550cea20c0
+  uses: appleboy/ssh-action@v0.1.5
+  with:
+    host: ${{ secrets.VM_IPADDRESS }}
+    username: ${{ secrets.SSH_USER }}
+    key: ${{ secrets.SSH_PRIVATE_KEY }}
+    port: ${{ secrets.PORT }}
+    script: whoami
