@@ -19,6 +19,7 @@ if test `find last_checkup.toto -mmin +30 ` 2>/dev/null || [[ ! -f last_checkup.
 fi
 
 
+
 # OK
 function  ateliers_marinette ()  {
 
@@ -28,14 +29,21 @@ function  ateliers_marinette ()  {
     grep -q "disabled>" $generated_files_location$filename
     if [[ $? != 0 ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_one" -lt 1 ]]; then counter_one=$((counter_one+1)); echo "  ateliersmarinette:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_one" -lt 1 ]]; then counter_one=$((counter_one+1)); echo "  ateliersmarinette:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi      
 
 }
+
 
 # OK
 function  retrocamera ()  {
@@ -46,11 +54,17 @@ function  retrocamera ()  {
     grep -q "Ce produit est épuisé" $generated_files_location$filename
     if [[ $? != 0 ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_two" -lt 1 ]]; then counter_two=$((counter_two+1)); echo "  retrocamera:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_two" -lt 1 ]]; then counter_two=$((counter_two+1)); echo "  retrocamera:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi      
 
 }
@@ -88,16 +102,22 @@ function  fotoimpex ()  {
             grep -q "alt=\"Currently sold out\"" $generated_files_location$filename
             if [[ $? != 0 ]]
             then
-                echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-                echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_three" -lt 1 ]]; then counter_three=$((counter_three+1)); echo "  fotoimpex:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
             else
-                echo -e $filename "est ${RED}\"Currently sold out\"${NC}" >> recap.txt
-                echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_three" -lt 1 ]]; then counter_three=$((counter_three+1)); echo "  fotoimpex:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
             fi
         else
             reappro_date=$(grep "class=\"os_list_shipt7\">Expected" $generated_files_location$filename | sed 's|<span class="os_list_shipt7">||g' | awk -F"<" '{sub(/^[ \t]+/, ""); print $1}')
-            echo -e $filename "est ${RED}\"Out of stock : ${reappro_date:="No expected date for back approx."} \"${NC}" >> recap.txt
-            echo $website","$filename",indisponible,"$reappro_date >> recap.csv
+            # echo -e $filename "est ${RED}\"Out of stock : ${reappro_date:="No expected date for back approx."} \"${NC}" >> recap.txt
+            # echo $website","$filename",indisponible,"$reappro_date >> recap.csv
     fi      
 
 }
@@ -111,11 +131,17 @@ function  kamerastore ()  {
     check_soldout=$(grep -A1 "disabled" $generated_files_location$filename | grep -i sold )
     if [[ -z $check_soldout ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_four" -lt 1 ]]; then counter_four=$((counter_four+1)); echo "  kamerastore:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_four" -lt 1 ]]; then counter_four=$((counter_four+1)); echo "  kamerastore:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi      
 
 }
@@ -129,11 +155,17 @@ function  digit_photo ()  {
     check_soldout=$(grep "id='title'>En réappro"  $generated_files_location$filename )
     if [[ -z $check_soldout ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_five" -lt 1 ]]; then counter_five=$((counter_five+1)); echo "  digit_photo:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_five" -lt 1 ]]; then counter_five=$((counter_five+1)); echo "  digit_photo:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi      
 
 }
@@ -147,11 +179,17 @@ function  morifilmlab ()  {
     check_soldout=$(grep 'data-label="Epuisé<br>"'  $generated_files_location$filename )
     if [[ -z $check_soldout ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_six" -lt 1 ]]; then counter_six=$((counter_six+1)); echo "  morifilmlab:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_six" -lt 1 ]]; then counter_six=$((counter_six+1)); echo "  morifilmlab:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi      
 
 }
@@ -165,11 +203,17 @@ function  buymorefilm ()  {
     check_soldout=$(grep -c "Sold Out"  $generated_files_location$filename )
     if [[ check_soldout -eq 2 ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_seven" -lt 1 ]]; then counter_seven=$((counter_seven+1)); echo "  buymorefilm:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_seven" -lt 1 ]]; then counter_seven=$((counter_seven+1)); echo "  buymorefilm:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi
 
 }
@@ -183,16 +227,24 @@ function  filmphotographystore ()  {
     check_soldout=$(grep  "Sold Out"  $generated_files_location$filename )
     if [[ -z $check_soldout ]]
         then
-            echo -e $filename "est ${GREEN}disponible${NC}" >> recap.txt
-            echo $website","$filename",disponible" >> recap.csv
+            if [[ "$counter_eight" -lt 1 ]]; then counter_eight=$((counter_eight+1)); echo "  filmphotographystore:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml            
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"OK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
         else
-            echo -e $filename "est ${RED}indisponible${NC}" >> recap.txt
-            echo $website","$filename",indisponible" >> recap.csv
+            if [[ "$counter_eight" -lt 1 ]]; then counter_eight=$((counter_eight+1)); echo "  filmphotographystore:" >> result.yaml; fi 
+            echo "    $filename:" >> result.yaml               
+            echo "      name: \"$filename\"" >> result.yaml
+            echo "      disponiblity: \"NOK\"" >> result.yaml
+            echo "      url: \"$url\"" >> result.yaml
     fi
 
 }
 
 function  generate_price_check ()  {
+
+    echo "website:" >> result.yaml
 
     for url in $(< list_of_urls)
         do
@@ -206,6 +258,7 @@ function  generate_price_check ()  {
             if [[ $url == *"filmphotographystore"* ]]; then filmphotographystore; fi                        
             if [[ $url == *"buymorefilm"* ]]; then buymorefilm; fi                        
     done
+
 
 }
 
