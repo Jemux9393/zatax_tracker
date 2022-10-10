@@ -4,21 +4,11 @@ NC='\033[0m' # No Color
 
 # Script design for https://www.ateliers-marinette.fr/ URLs
 
-last_checkup="NO_DATA"
-last_checkup=$(stat -c '%x' last_checkup.toto  | awk -F"." ' { print $1 }')
-echo "Derniere vérification des dispos : " $last_checkup
-generated_files_location="curled_files/"
+# last_checkup="NO_DATA"
+# last_checkup=$(stat -c '%x' last_checkup.toto  | awk -F"." ' { print $1 }')
+# echo "Derniere vérification des dispos : " $last_checkup
+generated_files_location="/home/gitlab/zatax_tracker/curled_files/"
 mkdir $generated_files_location
-
-if test `find last_checkup.toto -mmin +30 ` 2>/dev/null || [[ ! -f last_checkup.toto ]]
-    then
-        run_state="true"
-
-    else
-        run_state="false"
-fi
-
-
 
 # OK
 function  ateliers_marinette ()  {
@@ -246,7 +236,7 @@ function  generate_price_check ()  {
 
     echo "website:" >> result.yaml
 
-    for url in $(< list_of_urls)
+    for url in $(< /home/gitlab/zatax_tracker/list_of_urls)
         do
             if [[ $url == *"ateliers-marinette"* ]]; then ateliers_marinette; fi
             if [[ $url == *"retrocamera"* ]]; then retrocamera; fi
@@ -262,14 +252,6 @@ function  generate_price_check ()  {
 
 }
 
-
-function display_price_check () {
-
-cat recap.txt
-
-}
-
-
-
 generate_price_check
-display_price_check
+
+ansible-playbook /home/gitlab/zatax_tracker/ansible/main.yml
