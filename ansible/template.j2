@@ -18,7 +18,7 @@
     <header class="header header-6">
        <!-- <clr-icon shape="bars" style="width: 45px; height: 60px; position:absolute; left: 10px;" class="is-highlight"></clr-icon> -->
        <!-- <h4 style="position: absolute; left: 10px; "><font color="#FFFFFF">Server Certificate Reports</font></h4> -->
-       <font color="#FFFFFF"; style="position: absolute; top: 20px; left: 10px;" size="5">Les petites recettes de ZATAXXXXXX</font>
+       <font color="#FFFFFF"; style="position: absolute; top: 20px; left: 100px;" size="7">Les petites recettes de ZATAXXXXXX</font>
     </header>
     <div class="main-container">
         <div class="content-container">
@@ -29,7 +29,11 @@
 {% for name in website.ateliersmarinette %}
                         <tr>
                             <td>{{ name }}</td>
-                            <td>{{ website.ateliersmarinette[name].disponiblity }} Go</td>
+{% if website.ateliersmarinette[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %}                            
                             <td>{{ website.ateliersmarinette[name].url }}</td>
                         </tr>
 {% endfor %}                                                                      
@@ -40,7 +44,11 @@
 {% for name in website.retrocamera %}
                         <tr>
                             <td>{{ name }}</td>
-                            <td>{{ website.retrocamera[name].disponiblity }} Go</td>
+{% if website.retrocamera[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %}  
                             <td>{{ website.retrocamera[name].url }}</td>
                         </tr>
 {% endfor %}                                                                    
@@ -48,14 +56,93 @@
                 <table class="table">
                     <thead>
                         <caption>Kaméra Store</caption>
-{% for name in website.ateliersmarinette %}
+{% for name in website.kamerastore %}
                         <tr>
                             <td>{{ name }}</td>
-                            <td>{{ website.ateliersmarinette[name].disponiblity }} Go</td>
-                            <td>{{ website.ateliersmarinette[name].url }}</td>
+{% if website.kamerastore[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %}  
+                            <td>{{ website.kamerastore[name].url }}</td>
                         </tr>
 {% endfor %}                                                                    
-                </table>                
+                </table>
+                <table class="table">
+                    <thead>
+                        <caption>Foto Impex</caption>
+{% for name in website.fotoimpex %}
+                        <tr>
+                            <td>{{ name }}</td>
+{% if website.fotoimpex[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %}  
+                            <td>{{ website.fotoimpex[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>  
+                <table class="table">
+                    <thead>
+                        <caption>Digit Photo</caption>
+{% for name in website.digit_photo %}
+                        <tr>
+                            <td>{{ name }}</td>
+{% if website.digit_photo[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %} 
+                            <td>{{ website.digit_photo[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>
+                <table class="table">
+                    <thead>
+                        <caption>Mori Film Lab</caption>
+{% for name in website.morifilmlab %}
+                        <tr>
+                            <td>{{ name }}</td>
+{% if website.morifilmlab[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %} 
+                            <td>{{ website.morifilmlab[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>
+                <table class="table">
+                    <thead>
+                        <caption>Filmography Store</caption>
+{% for name in website.filmphotographystore %}
+                        <tr>
+                            <td>{{ name }}</td>
+{% if website.filmphotographystore[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %} 
+                            <td>{{ website.filmphotographystore[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>
+                <table class="table">
+                    <thead>
+                        <caption>Buy More Film</caption>
+{% for name in website.buymorefilm %}
+                        <tr>
+                            <td>{{ name }}</td>
+{% if website.buymorefilm[name].disponiblity == 'OK' %}
+                            <td bgcolor="#008000">OK</td>
+{% else %}
+                            <td bgcolor="#B20000">NOK</td>
+{% endif %} 
+                            <td>{{ website.buymorefilm[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>                                                   
             </div>
         </div>
     </div>
