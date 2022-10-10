@@ -31,8 +31,8 @@ jobs:
       # uses: appleboy/ssh-action@f9010ff7f1bbd7db1a0b4bab661437550cea20c0
       uses: appleboy/ssh-action@v0.1.5
       with:
-        host: ${{ secrets.VM_IPADDRESS }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ cicd.VM_IPADDRESS }}
+        username: ${{ cicd.SSH_USER }}
+        key: ${{ cicd.SSH_PRIVATE_KEY }}
         port: 22
         script: whoami
