@@ -36,4 +36,4 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
-        script: /home/gitlab/zatax_tracker/check_disponibilities.sh
+        script: pwd
