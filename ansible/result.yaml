@@ -1,0 +1,141 @@
+website:
+  ateliersmarinette:
+    kodak-ultramax-400-35mm-24:
+      name: "kodak-ultramax-400-35mm-24"
+      disponiblity: "NOK"
+      url: "https://www.ateliers-marinette.fr/fr/pellicules-argentiques/kodak-ultramax-400-35mm-24.html"
+    kodak-portra-400-35mm:
+      name: "kodak-portra-400-35mm"
+      disponiblity: "NOK"
+      url: "https://www.ateliers-marinette.fr/fr/pellicules-argentiques/kodak-portra-400-35mm.html"
+    kodak-ektar-100-35mm:
+      name: "kodak-ektar-100-35mm"
+      disponiblity: "NOK"
+      url: "https://www.ateliers-marinette.fr/fr/pellicules-argentiques/kodak-ektar-100-35mm.html"
+    kodak-ektar-100-120:
+      name: "kodak-ektar-100-120"
+      disponiblity: "OK"
+      url: "https://www.ateliers-marinette.fr/fr/pellicules-argentiques/kodak-ektar-100-120.html"
+    dubble-daily-black-and-white-400-35mm:
+      name: "dubble-daily-black-and-white-400-35mm"
+      disponiblity: "NOK"
+      url: "https://www.ateliers-marinette.fr/fr/pellicules-argentiques/dubble-daily-black-and-white-400-35mm.html"
+    perimee-bipack-fuji-c200-35mm:
+      name: "perimee-bipack-fuji-c200-35mm"
+      disponiblity: "OK"
+      url: "https://www.ateliers-marinette.fr/fr/pellicules-argentiques/perimee-bipack-fuji-c200-35mm.html"
+  retrocamera:
+    2138-kodak-gold-200-135-24-0086806033954:
+      name: "2138-kodak-gold-200-135-24-0086806033954"
+      disponiblity: "NOK"
+      url: "https://www.retrocamera.be/fr/film-35mm-negatif-couleur-kodak/2138-kodak-gold-200-135-24-0086806033954.html"
+    2559-washi-film-x-100-135-36:
+      name: "2559-washi-film-x-100-135-36"
+      disponiblity: "OK"
+      url: "https://www.retrocamera.be/fr/film-35mm-negatif-couleur-washi/2559-washi-film-x-100-135-36.html"
+  fotoimpex:
+    adox-cms-20-ii-bulk-roll-305m100ft-double-sided-perforated:
+      name: "adox-cms-20-ii-bulk-roll-305m100ft-double-sided-perforated"
+      disponiblity: "OK"
+      url: "https://www.fotoimpex.com/films/adox-cms-20-ii-bulk-roll-305m100ft-double-sided-perforated.html"
+    adox-color-mission-200:
+      name: "adox-color-mission-200"
+      disponiblity: "NOK"
+      url: "https://www.fotoimpex.com/films/adox-color-mission-200.html"
+    bundle-out-of-3-x-ilford-delta-400-13536-adox-fx-39-type-ii-100-ml-conc-adox-baby-adofix-plus-100-ml-conc:
+      name: "bundle-out-of-3-x-ilford-delta-400-13536-adox-fx-39-type-ii-100-ml-conc-adox-baby-adofix-plus-100-ml-conc"
+      disponiblity: "OK"
+      url: "https://www.fotoimpex.com/films/bundle-out-of-3-x-ilford-delta-400-13536-adox-fx-39-type-ii-100-ml-conc-adox-baby-adofix-plus-100-ml-conc.html"
+    bundle-out-of-3-x-ilford-delta-100-13536-adox-fx-39-type-ii-100-ml-conc-adox-baby-adofix-plus-100-ml-conc:
+      name: "bundle-out-of-3-x-ilford-delta-100-13536-adox-fx-39-type-ii-100-ml-conc-adox-baby-adofix-plus-100-ml-conc"
+      disponiblity: "OK"
+      url: "https://www.fotoimpex.com/films/bundle-out-of-3-x-ilford-delta-100-13536-adox-fx-39-type-ii-100-ml-conc-adox-baby-adofix-plus-100-ml-conc.html"
+  kamerastore:
+    fujifilm-fujicolor-c200-35mm-color-film:
+      name: "fujifilm-fujicolor-c200-35mm-color-film"
+      disponiblity: "NOK"
+      url: "https://kamerastore.com/products/fujifilm-fujicolor-c200-35mm-color-film"
+    kodak-colorplus-200-35mm-color-film:
+      name: "kodak-colorplus-200-35mm-color-film"
+      disponiblity: "NOK"
+      url: "https://kamerastore.com/products/kodak-colorplus-200-35mm-color-film"
+    cinestill-800t-35mm-color-film:
+      name: "cinestill-800t-35mm-color-film"
+      disponiblity: "NOK"
+      url: "https://kamerastore.com/products/cinestill-800t-35mm-color-film"
+    ilford-hp5-plus-400-35mm-black-and-white-film:
+      name: "ilford-hp5-plus-400-35mm-black-and-white-film"
+      disponiblity: "OK"
+      url: "https://kamerastore.com/products/ilford-hp5-plus-400-35mm-black-and-white-film"
+    ilford-fp4-plus-125-35mm-black-and-white-film:
+      name: "ilford-fp4-plus-125-35mm-black-and-white-film"
+      disponiblity: "OK"
+      url: "https://kamerastore.com/products/ilford-fp4-plus-125-35mm-black-and-white-film"
+    kodak-colorplus-200-35mm-color-film:
+      name: "kodak-colorplus-200-35mm-color-film"
+      disponiblity: "NOK"
+      url: "https://kamerastore.com/products/kodak-colorplus-200-35mm-color-film"
+  digit_photo:
+    KODAK-Portra-400-135-36-Poses-X5-rKFILM386:
+      name: "KODAK-Portra-400-135-36-Poses-X5-rKFILM386"
+      disponiblity: "NOK"
+      url: "https://www.digit-photo.com/KODAK-Portra-400-135-36-Poses-X5-rKFILM386.html"
+    KODAK-Gold-120-200-Asa-x5-rKODAK520004565:
+      name: "KODAK-Gold-120-200-Asa-x5-rKODAK520004565"
+      disponiblity: "OK"
+      url: "https://www.digit-photo.com/KODAK-Gold-120-200-Asa-x5-rKODAK520004565.html"
+  morifilmlab:
+    kodak-portra-160-35mm-film:
+      name: "kodak-portra-160-35mm-film"
+      disponiblity: "NOK"
+      url: "https://fr.morifilmlab.com/collections/35mm-film/products/kodak-portra-160-35mm-film"
+    filmneverdie-niji-35mm-reusable-film-camera:
+      name: "filmneverdie-niji-35mm-reusable-film-camera"
+      disponiblity: "OK"
+      url: "https://fr.morifilmlab.com/collections/35mm-film/products/filmneverdie-niji-35mm-reusable-film-camera"
+    ilford-xp2-super-400-b-w-c41-120-film-1:
+      name: "ilford-xp2-super-400-b-w-c41-120-film-1"
+      disponiblity: "OK"
+      url: "https://fr.morifilmlab.com/collections/35mm-film/products/ilford-xp2-super-400-b-w-c41-120-film-1"
+    kodak-portra-400-35mm-film:
+      name: "kodak-portra-400-35mm-film"
+      disponiblity: "NOK"
+      url: "https://fr.morifilmlab.com/collections/35mm-film/products/kodak-portra-400-35mm-film"
+    fujifilm-c200-35mm-film:
+      name: "fujifilm-c200-35mm-film"
+      disponiblity: "NOK"
+      url: "https://fr.morifilmlab.com/collections/35mm-film/products/fujifilm-c200-35mm-film"
+  filmphotographystore:
+    35mm-film-camera-canon-ae-1-program-slr-vintage:
+      name: "35mm-film-camera-canon-ae-1-program-slr-vintage"
+      disponiblity: "NOK"
+      url: "https://filmphotographystore.com/collections/35mm-cameras/products/35mm-film-camera-canon-ae-1-program-slr-vintage"
+    16mm-film-double-perf-fresh-cine16-bw-negative-100-iso-100-ft:
+      name: "16mm-film-double-perf-fresh-cine16-bw-negative-100-iso-100-ft"
+      disponiblity: "OK"
+      url: "https://filmphotographystore.com/collections/movie-film/products/16mm-film-double-perf-fresh-cine16-bw-negative-100-iso-100-ft"
+    16mm-film-kodak-vision3-500t-7219-100-ft-30-5m:
+      name: "16mm-film-kodak-vision3-500t-7219-100-ft-30-5m"
+      disponiblity: "NOK"
+      url: "https://filmphotographystore.com/collections/movie-film/products/16mm-film-kodak-vision3-500t-7219-100-ft-30-5m"
+  buymorefilm:
+    adox-chs-100-ii-135-36-new:
+      name: "adox-chs-100-ii-135-36-new"
+      disponiblity: "OK"
+      url: "https://buymorefilm.com/collections/35mm-new-black-and-white/products/adox-chs-100-ii-135-36-new"
+    adox-cms-20-ii-pro-135-36-new:
+      name: "adox-cms-20-ii-pro-135-36-new"
+      disponiblity: "OK"
+      url: "https://buymorefilm.com/collections/35mm-new-black-and-white/products/adox-cms-20-ii-pro-135-36-new"
+    agfaphoto-apx-400-135-36-new:
+      name: "agfaphoto-apx-400-135-36-new"
+      disponiblity: "OK"
+      url: "https://buymorefilm.com/collections/35mm-new-black-and-white/products/agfaphoto-apx-400-135-36-new"
+    agfaphoto-apx-100-professional-135-36-new:
+      name: "agfaphoto-apx-100-professional-135-36-new"
+      disponiblity: "NOK"
+      url: "https://buymorefilm.com/collections/35mm-new-black-and-white/products/agfaphoto-apx-100-professional-135-36-new"
+    bergger-pancro-400-35mm-36-new:
+      name: "bergger-pancro-400-35mm-36-new"
+      disponiblity: "NOK"
+      url: "https://buymorefilm.com/collections/35mm-new-black-and-white/products/bergger-pancro-400-35mm-36-new"

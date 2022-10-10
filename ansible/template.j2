@@ -1,0 +1,63 @@
+<html>
+<head>
+    <!-- Load the latest version -->
+    <link rel="stylesheet" href="https://unpkg.com/@clr/ui/clr-ui.min.css" />
+    <!-- Or load a specific version -->
+    <link rel="stylesheet" href="https://unpkg.com/@clr/ui@0.12.5/clr-ui.min.css" />
+
+    <!--CLARITY ICONS STYLE-->
+    <link rel="stylesheet" href="https://unpkg.com/clarity-icons/clarity-icons.min.css">
+
+    <!--CLARITY ICONS DEPENDENCY: CUSTOM ELEMENTS POLYFILL-->
+    <script src="https://unpkg.com/@webcomponents/custom-elements/custom-elements.min.js"></script>
+
+    <!--CLARITY ICONS API & ALL ICON SETS-->
+    <script src="https://unpkg.com/clarity-icons/clarity-icons.min.js"></script>
+</head>
+<body>
+    <header class="header header-6">
+       <!-- <clr-icon shape="bars" style="width: 45px; height: 60px; position:absolute; left: 10px;" class="is-highlight"></clr-icon> -->
+       <!-- <h4 style="position: absolute; left: 10px; "><font color="#FFFFFF">Server Certificate Reports</font></h4> -->
+       <font color="#FFFFFF"; style="position: absolute; top: 20px; left: 10px;" size="5">Les petites recettes de ZATAXXXXXX</font>
+    </header>
+    <div class="main-container">
+        <div class="content-container">
+            <div class="content-area">
+                <table class="table">
+                    <thead>
+                        <caption>Ateliers de Marinette</caption>
+{% for name in website.ateliersmarinette %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ website.ateliersmarinette[name].disponiblity }} Go</td>
+                            <td>{{ website.ateliersmarinette[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                      
+                </table>
+                <table class="table">
+                    <thead>
+                        <caption>Retro caméra</caption>
+{% for name in website.retrocamera %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ website.retrocamera[name].disponiblity }} Go</td>
+                            <td>{{ website.retrocamera[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>
+                <table class="table">
+                    <thead>
+                        <caption>Kaméra Store</caption>
+{% for name in website.ateliersmarinette %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ website.ateliersmarinette[name].disponiblity }} Go</td>
+                            <td>{{ website.ateliersmarinette[name].url }}</td>
+                        </tr>
+{% endfor %}                                                                    
+                </table>                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

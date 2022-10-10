@@ -1,0 +1,14 @@
+- name: Rendering data to html
+  hosts: localhost
+  tasks:
+
+  - include_vars: result.yaml
+
+  # - name: "debug"
+  #   debug:
+  #     msg: "{{ website.ateliersmarinette }}"
+
+  - name: "Génération du HTML"
+    template:
+      src: template.j2
+      dest: "template.html"
